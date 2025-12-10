@@ -1,15 +1,16 @@
-- name: Install mysql
-  ansible.module.dnf:
-    name: mysql-server
-    state: installed
-
-- name: Start and enable mysql
-  ansible.module.systemd:
-    name: mysql-server
-    state: restarted
-    enabled: yes
-    daemon-reload: true
-
-- name: set password
-  ansible.module.shell: mysql_secure_installation --set-root-pass ExpenseApp@1
+#- name: Install mysql
+#  ansible.module.dnf:
+#    name: mysql-server
+#    state: installed
+#
+#- name: Start and enable mysql
+#  ansible.module.systemd:
+#    name: mysql-server
+#    state: restarted
+#    enabled: yes
+#    daemon-reload: true
+#
+#- name: set password
+#  ansible.module.shell: mysql_secure_installation --set-root-pass ExpenseApp@1
+#
 
