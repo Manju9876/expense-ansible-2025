@@ -1,4 +1,4 @@
-- name: Install mysql
+- name: Install nginx
   ansible.builtin.dnf:
     name: nginx
     state: installed
