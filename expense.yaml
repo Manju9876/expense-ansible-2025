@@ -1,6 +1,6 @@
 - name: expense setup
   connection: localhost
-  hosts: all
+  hosts: local
   become: yes
   roles:
     - "{{ component_name }}"
