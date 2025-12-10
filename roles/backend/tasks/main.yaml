@@ -1,0 +1,8 @@
+- name: install nginx
+  ansible.module.shell: dnf install nginx -y
+
+- name: enable and start nginx
+  ansible.module.systemd.service:
+    state: restarted
+    daemon_reload: true
+    enabled: true
