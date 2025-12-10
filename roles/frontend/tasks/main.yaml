@@ -1,5 +1,7 @@
-- name: install nginx
-  ansible.builtin.shell: dnf install nginx -y
+- name: Install mysql
+  ansible.module.dnf:
+    name: nginx
+    state: installed
 
 - name: Copy nginx configuration file
   ansible.builtin.template:

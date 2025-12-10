@@ -1,8 +1,14 @@
-- name: install nginx
-  ansible.module.shell: dnf install nginx -y
+- name: Install mysql
+  ansible.module.dnf:
+    name: mysql-server
+    state: installed
 
-- name: enable and start nginx
-  ansible.module.systemd.service:
+- name: Start and enable mysql
+  ansible.module.systemd:
+    name: mysql-server
     state: restarted
-    daemon_reload: true
-    enabled: true
+    enabled: yes
+    daemon-reload: true
+
+- name: set password
+  ansible.module.shell: mysql_secure_installation --set-root-pass ExpenseApp@1
