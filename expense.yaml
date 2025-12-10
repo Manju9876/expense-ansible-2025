@@ -1,4 +1,5 @@
 - name: expense setup
+  connection: localhost
   hosts: all
   become: yes
   roles:
