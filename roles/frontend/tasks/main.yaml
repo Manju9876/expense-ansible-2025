@@ -3,6 +3,7 @@
 
 - name: enable and start nginx
   ansible.builtin.systemd.service:
-    state: restarted
-    daemon_reload: true
-    enabled: true
+    - name: nginx
+      state: restarted
+      daemon_reload: true
+      enabled: true
