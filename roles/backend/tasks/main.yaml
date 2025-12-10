@@ -12,3 +12,4 @@
 
 - name: set password
   ansible.module.shell: mysql_secure_installation --set-root-pass ExpenseApp@1
+
