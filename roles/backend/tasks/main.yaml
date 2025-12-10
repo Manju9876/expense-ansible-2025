@@ -1,16 +1,48 @@
-#- name: Install mysql
-#  ansible.module.dnf:
-#    name: mysql-server
-#    state: installed
-#
-#- name: Start and enable mysql
-#  ansible.module.systemd:
-#    name: mysql-server
-#    state: restarted
-#    enabled: yes
-#    daemon-reload: true
-#
-#- name: set password
-#  ansible.module.shell: mysql_secure_installation --set-root-pass ExpenseApp@1
-#
+- name: Disable nodejs
+  ansible.builtin.shell: dnf module disable nodejs -y
+
+- name: Enable nodejs version 20
+  ansible.builtin.shell: dnf module enable nodejs:20 -y
+
+- name: Install nodejs
+  ansible.builtin.dnf:
+    name: nodejs
+    state: installed
+
+- name: Add the user 'expense'
+  ansible.builtin.user:
+    name: expense
+
+- name: Delete the existing the /app directory
+  ansible.builtin.file:
+    path: /app
+    state: absent
+
+- name: Create a app directory
+  ansible.builtin.file:
+    path: /app
+    state: directory
+
+- name: Download application code
+  ansible.builtin.unarchive:
+    src: https://expense-artifacts.s3.amazonaws.com/expense-backend-v2.zip
+    dest: /app
+    remote_src: yes
+
+- name: Install Nodejs dependencies
+  ansible.builtin.shell: npm install
+  args:
+    chdir: /app
+
+- name: Copy systemd service file
+  ansible.builtin.template:
+    src: backend.service
+    dest: /etc/systemd/system/backend.service
+
+- name: enable and start backend service
+  ansible.builtin.systemd:
+    name: backend
+    enabled: true
+    state: restarted
+    daemon_reload: true
 
