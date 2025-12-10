@@ -4,12 +4,12 @@
     state: installed
 
 - name: Start and enable mysql
-  ansible.module.systemd:
+  ansible.builtin.systemd:
     name: mysql-server
     state: restarted
     enabled: yes
     daemon-reload: true
 
 - name: set password
-  ansible.module.shell: mysql_secure_installation --set-root-pass ExpenseApp@1
+  ansible.builtin.shell: mysql_secure_installation --set-root-pass ExpenseApp@1
 
