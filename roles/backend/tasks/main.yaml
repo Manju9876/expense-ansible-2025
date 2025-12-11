@@ -1,13 +1,7 @@
-- name: Disable nodejs
-  ansible.builtin.shell: dnf module disable nodejs -y
-
-- name: Enable nodejs version 20
-  ansible.builtin.shell: dnf module enable nodejs:20 -y
-
-- name: Install nodejs
-  ansible.builtin.dnf:
-    name: nodejs
-    state: installed
+- name: Load Nodejs
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: nodejs.yaml
 
 - name: Add the user 'expense'
   ansible.builtin.user:
