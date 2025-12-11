@@ -3,6 +3,11 @@
     name: nginx
     state: installed
 
+- name: Install unzip package
+  ansible.builtin.dnf:
+    name: unzip
+    state: present
+
 - name: Copy nginx configuration file
   ansible.builtin.template:
     src: expense.conf
@@ -13,7 +18,6 @@
   ansible.builtin.file:
     path: /usr/share/nginx/html
     state: absent
-
 
 - name: Create file for Nginx data
   ansible.builtin.file:
