@@ -13,7 +13,6 @@
     src: expense.conf
     dest: /etc/nginx/default.d/expense.conf
 
-
 - name: Delete existing nginx data
   ansible.builtin.file:
     path: /usr/share/nginx/html
@@ -29,7 +28,6 @@
     src: https://expense-artifacts.s3.amazonaws.com/expense-frontend-v2.zip
     dest: /usr/share/nginx/html
     remote_src: yes
-
 
 - name: enable and start nginx
   ansible.builtin.systemd:
