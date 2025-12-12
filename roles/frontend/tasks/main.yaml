@@ -1,3 +1,6 @@
+- name: Setup prompt
+  ansible.builtin.shell: set-prompt {{ component_name }}
+
 - name: Install nginx
   ansible.builtin.dnf:
     name: nginx

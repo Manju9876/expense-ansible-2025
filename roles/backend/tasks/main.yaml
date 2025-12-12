@@ -1,3 +1,6 @@
+- name: Setup prompt
+  ansible.builtin.shell: set-prompt {{ component_name }}
+
 - name: Include Nodejs task in the play
   ansible.builtin.include_role:
     name: common
