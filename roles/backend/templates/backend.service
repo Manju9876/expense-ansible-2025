@@ -3,7 +3,7 @@ Description = Backend Service
 
 [Service]
 User=expense
-Environment=DB_HOST="mysql-dev.devopsbymanju.shop"
+Environment=DB_HOST={{ lookup('community.hashi_vault.hashi_vault', 'secret=expense-{{ env }}-secrets/data/{{ component_name }}:DB_HOST token={{ vault_token }} url=http://vault.devopsbymanju.shop:8200')
 ExecStart=/bin/node /app/index.js
 SyslogIdentifier=backend
 
